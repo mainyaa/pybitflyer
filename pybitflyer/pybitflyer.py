@@ -29,8 +29,8 @@ class API(object):
 
         if self.api_key and self.api_secret:
             access_timestamp = str(time.time())
-            api_secret = str.encode(self.api_secret)
-            text = str.encode(access_timestamp + method + endpoint + body)
+            api_secret = self.api_secret.encode()
+            text = (access_timestamp + method + endpoint + body).encode()
             access_sign = hmac.new(api_secret,
                                    text,
                                    hashlib.sha256).hexdigest()
